@@ -67,6 +67,10 @@ module.exports = {
         cloudinary.v2.uploader.upload(`uploads/${req.file.filename}`, { folder: 'instagram_clone' },
             async function (error, result) {
 
+                if (error) {
+                    return
+                }
+
                 const file_url = result.secure_url
 
                 user.picture_url = file_url

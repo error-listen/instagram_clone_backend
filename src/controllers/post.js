@@ -27,6 +27,11 @@ module.exports = {
                 folder: 'instagram_clone'
             },
                 async function (error, result) {
+
+                    if(error){
+                        return
+                    }
+
                     const file_url = result.secure_url
 
                     const author = user.username
@@ -49,6 +54,10 @@ module.exports = {
             cloudinary.v2.uploader.upload(`uploads/${req.file.filename}`, {folder: 'instagram_clone'},
                 async function (error, result) {
 
+                    if(error){
+                        return
+                    }
+
                     const file_url = result.secure_url
 
                     const author = user.username
@@ -66,6 +75,7 @@ module.exports = {
 
                     fs.unlinkSync(`uploads/${req.file.filename}`)
                     res.json({ message: 'Created post', post })
+
                 })
         }
     },
