@@ -16,10 +16,6 @@ mongoose.connect(
     { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
 
 
-app.use(cors())
-app.use(express.json())
-app.use(routes)
-
 const connected_users = {}
 
 io.on('connection', socket => {
@@ -35,6 +31,10 @@ app.use((req, res, next) => {
     next()
 })
 
+app.use(cors())
+app.use(express.json())
+app.use(routes)
+
 server.listen(process.env.PORT || 5000, () => {
-    console.log('Running server on port 4000')
+    console.log('Running server on port 5000')
 })
