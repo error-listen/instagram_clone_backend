@@ -23,7 +23,6 @@ module.exports = {
             cloudinary.v2.uploader.upload(`uploads/${req.file.filename}`, {
                 resource_type: 'video',
                 public_id: `${req.file.filename}`,
-                chunk_size: 6000000,
                 folder: 'instagram_clone'
             },
                 async function (error, result) {
