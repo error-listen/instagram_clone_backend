@@ -9,7 +9,7 @@ module.exports = {
     async show_posts(req, res) {
         const posts = await post_model.find().sort('-createdAt')
 
-        res.status(200).send({ message: 'Posts', posts })   
+        res.json({ message: 'Posts', posts })   
     },
 
     async create_post(req, res) {
@@ -43,7 +43,7 @@ module.exports = {
                     })
 
                     fs.unlinkSync(`uploads/${req.file.filename}`)
-                    res.status(201).send({ message: 'Created post', post })
+                    res.json({ message: 'Created post', post })
                 })
         } else if (type === 'image') {
             cloudinary.v2.uploader.upload(`uploads/${req.file.filename}`, {folder: 'instagram_clone'},
@@ -65,7 +65,7 @@ module.exports = {
                     })
 
                     fs.unlinkSync(`uploads/${req.file.filename}`)
-                    res.status(201).send({ message: 'Created post', post })
+                    res.json({ message: 'Created post', post })
                 })
         }
     },
@@ -87,7 +87,7 @@ module.exports = {
                 post.likes.splice(i, 1);
                 await post.save()
                 req.io.to(logged_socket).emit('post', post)
-                res.json(post)
+                res.send(post)
                 return
             }
         }
@@ -95,7 +95,7 @@ module.exports = {
         post.likes.push({username: user_logged.username, picture_url: user_logged.picture_url})
         await post.save()
         req.io.to(logged_socket).emit('post', post)
-        res.json(post)
+        res.json({ message: 'Liked post', post })
     },
 
     

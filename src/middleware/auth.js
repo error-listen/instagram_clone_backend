@@ -1,32 +1,35 @@
 const jwt = require('jsonwebtoken')
 
-const authConfig = require('../config/auth')
+const auth_config = require('../config/auth')
 
 module.exports = (req, res, next) => {
-    const authHeader = req.headers.authorization
+    const auth_header = req.headers.authorization
 
-    if(!authHeader){
-        return res.status(401).json({ error: 'No token provider'})
+    if (!auth_header) {
+        res.json({ message: 'No token provider' })
+        return
     }
 
-    const parts = authHeader.split(' ')
+    const parts = auth_header.split(' ')
 
-    if(!parts.lenght === 2){
-        return res.status(401).json({error: 'Token error'})
+    if (!parts.lenght === 2) {
+        res.json({ message: 'Token error' })
+        return
     }
 
-    const [ scheme, token ] = parts
+    const [scheme, token] = parts
 
-    if(!/^Bearer$/i.test(scheme)){
-        return res.status(401).json({error: 'Badly formatted token'})
+    if (!/^Bearer$/i.test(scheme)) {
+        res.json({ message: 'Badly formatted token' })
     }
 
-    jwt.verify(token, authConfig.secret, (err, decoded) => {
-        if(err){
-            return res.status(401).json({error: 'Token invalid'})
+    jwt.verify(token, auth_config.secret, (err, decoded) => {
+        if (err) {
+            res.json({ message: 'Token invalid' })
+            return
         }
 
-        req.idUser = decoded.id
+        req.user_id = decoded.id
         return next()
     })
 

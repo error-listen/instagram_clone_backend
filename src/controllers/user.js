@@ -18,31 +18,28 @@ module.exports = {
         const user = { username: req.body.username, full_name: req.body.full_name, password: hashed_password }
         const user_exist = await user_model.findOne({ username: req.body.username })
 
-        try {
-            if (user_exist) {
-                throw res.status(400).send({ message: 'User already exists' })
-            }
-            const create_user = await user_model.create(user)
-            res.status(201).send({ message: 'Created user', create_user, token: generate_token({ id: create_user._id }) })
-        } catch (err) {
-            res.send({ message: err })
+        if (user_exist) {
+            res.json({ message: 'User already exists' })
+            return
         }
+
+        const create_user = await user_model.create(user)
+        res.json({ message: 'Created user', create_user, token: generate_token({ id: create_user._id }) })
+
     },
 
     async sign_in(req, res) {
         const user = await user_model.findOne({ username: req.body.username })
 
-        try {
-            if (user == null) {
-                throw res.status(404).send({ message: 'The user name entered does not belong to an account. Check your username and try again.' })
-            }
-            if (await bcrypt.compare(req.body.password, user.password)) {
-                res.status(202).send({ message: 'Valid log in', user, token: generate_token({ id: user._id }) })
-            } else {
-                throw res.status(400).send({ message: 'Invalid credentials' })
-            }
-        } catch (err) {
-            res.send({ message: err })
+        if (user == null) {
+            res.json({ message: 'The user name entered does not belong to an account. Check your username and try again.' })
+            return
+        }
+
+        if (await bcrypt.compare(req.body.password, user.password)) {
+            res.json({ message: 'Valid log in', user, token: generate_token({ id: user._id }) })
+        } else {
+            res.json({ message: 'Invalid credentials' })
         }
     },
 
@@ -55,7 +52,7 @@ module.exports = {
     async show_profile(req, res) {
         const user = await user_model.findOne({ username: req.params.username })
 
-        res.status(200).send({ message: 'User', user })
+        res.json({ message: 'User', user })
     },
 
     async user_picture(req, res) {
@@ -63,11 +60,11 @@ module.exports = {
 
         const user = await user_model.findById(user_id)
 
-        if(user.picture_url){
+        if (user.picture_url) {
             cloudinary.v2.api.delete_resources(user.picture_id)
         }
 
-        cloudinary.v2.uploader.upload(`uploads/${req.file.filename}`, {folder: 'instagram_clone'},
+        cloudinary.v2.uploader.upload(`uploads/${req.file.filename}`, { folder: 'instagram_clone' },
             async function (error, result) {
 
                 const file_url = result.secure_url
@@ -88,7 +85,7 @@ module.exports = {
 
                 fs.unlinkSync(`uploads/${req.file.filename}`)
 
-                res.status(202).send({ message: 'Picture added', user })
+                res.json({ message: 'Picture added', user })
             })
     },
 
@@ -113,7 +110,7 @@ module.exports = {
 
         await user.save()
 
-        res.send(user)
+        res.json({ message: 'Picture deleted', user })
     }
 
 }
