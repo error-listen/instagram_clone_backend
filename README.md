@@ -25,7 +25,7 @@ To run this project in development mode, you will need of nodejs and npm, you ca
 
 A rest client how <a href="https://insomnia.rest">Insomnia</a> or <a href="https://www.postman.com">Postman</a>.
 
-an account on the <a href="https://cloudinary.com">cloudinary</a> platform
+An account on the <a href="https://cloudinary.com">cloudinary</a> platform
 
 <h3>Installing</h4>
 <h4>Cloning the Repository</h5>
