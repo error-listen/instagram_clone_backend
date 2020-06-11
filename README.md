@@ -1,5 +1,6 @@
 # instagram_clone_backend
 
+![instagram_clone](https://user-images.githubusercontent.com/66707613/84338394-44603a80-ab72-11ea-9db3-587e3d3fe9e2.gif)
 
 <h2>About this Project</h2>
 Instagram clone with some features.
