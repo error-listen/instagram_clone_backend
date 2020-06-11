@@ -48,9 +48,9 @@ create a file called .env and put:
 
 MONGO_URL="YOUR_MONGO_URL"
 
-CLOUD_NAME="YOUR_CLOUD_NAME"
-API_KEY="YOUR_API_KEY"
-API_SECRET="YOUR_API_SECRET"
+CLOUD_NAME="YOUR_CLOUD_NAME"<b/>
+API_KEY="YOUR_API_KEY"<b/>
+API_SECRET="YOUR_API_SECRET"<b/>
 
 <h2>Running</h2>
 With all dependencies installed and the environment properly configured, you can now run the app:
@@ -70,7 +70,7 @@ With all dependencies installed and the environment properly configured, you can
   <li><a href="https://github.com/expressjs/multer">Multer</a> - Is a node.js middleware for handling multipart/form-data, which is primarily used for uploading files. It is written on top of busboy for maximum efficiency</li>
   <li><a href="https://socket.io/">SOCKET.IO</a> - Enables real-time, bidirectional and event-based communication.
 It works on every platform, browser or device, focusing equally on reliability and speed</li>
-  <li><a href="https://cloudinary.com">Cloudinary</a>Use Cloudinary to efficiently create, optimize, and deliver images, videos and other media across every device and channel.</li>
+  <li><a href="https://cloudinary.com"> Cloudinary</a>Use Cloudinary to efficiently create, optimize, and deliver images, videos and other media across every device and channel.</li>
 </ul>
 
 <h2>License</h2>
