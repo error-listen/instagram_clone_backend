@@ -30,9 +30,9 @@ an account on the <a href="https://cloudinary.com">cloudinary</a> platform
 <h3>Installing</h4>
 <h4>Cloning the Repository</h5>
 
-`$ git clone https://github.com/Cyb3rB0t1R/instagram-clone-backend.git`
+`$ git clone https://github.com/error-listen/instagram_clone_backend.git`
 
-`$ cd instagram-clone-backend`
+`$ cd instagram_clone_backend`
 
 <h4>Installing dependencies</h3>
 
