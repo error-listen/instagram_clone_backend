@@ -68,9 +68,9 @@ With all dependencies installed and the environment properly configured, you can
    <li><a href="https://github.com/auth0/node-jsonwebtoken">Jsonwebtoken</a> - Is an Internet standard for creating JSON-based access tokens that claim a number of claims</li>
   <li><a href="https://mongoosejs.com/">Mongoose</a> - Provides a straight-forward, schema-based solution to model your application data</li>
   <li><a href="https://github.com/expressjs/multer">Multer</a> - Is a node.js middleware for handling multipart/form-data, which is primarily used for uploading files. It is written on top of busboy for maximum efficiency</li>
-  <li><a href="https://socket.io/">SOCKET.IO</a> Enables real-time, bidirectional and event-based communication.
+  <li><a href="https://socket.io/">SOCKET.IO</a> - Enables real-time, bidirectional and event-based communication.
 It works on every platform, browser or device, focusing equally on reliability and speed</li>
-  <li><a href="https://cloudinary.com">Cloudinary</a> Use Cloudinary to efficiently create, optimize, and deliver images, videos and other media across every device and channel.</li>
+  <li><a href="https://cloudinary.com">Cloudinary</a> - Use Cloudinary to efficiently create, optimize, and deliver images, videos and other media across every device and channel.</li>
 </ul>
 
 <h2>License</h2>
