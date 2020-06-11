@@ -2,6 +2,10 @@
 
 ![instagram_clone](https://user-images.githubusercontent.com/66707613/84338560-c9e3ea80-ab72-11ea-84ad-d0b9c98fee81.gif)
 
+Project Web: https://project-instagram-frontend.herokuapp.com
+
+Frontend: https://github.com/error-listen/instagram_clone_frontend
+
 <h2>About this Project</h2>
 Instagram clone with some features.
 
