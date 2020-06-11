@@ -48,9 +48,9 @@ create a file called .env and put:
 
 MONGO_URL="YOUR_MONGO_URL"
 
-CLOUD_NAME="YOUR_CLOUD_NAME"<b/>
-API_KEY="YOUR_API_KEY"<b/>
-API_SECRET="YOUR_API_SECRET"<b/>
+CLOUD_NAME="YOUR_CLOUD_NAME"<br/>
+API_KEY="YOUR_API_KEY"<br/>
+API_SECRET="YOUR_API_SECRET"<br/>
 
 <h2>Running</h2>
 With all dependencies installed and the environment properly configured, you can now run the app:
