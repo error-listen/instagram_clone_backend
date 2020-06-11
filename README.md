@@ -23,7 +23,9 @@ This project is part of my personal portfolio.
 
 To run this project in development mode, you will need of nodejs and npm, you can found <a href="https://nodejs.org/en/">here</a>.
 
-A rest client how Insomnia or Postman.
+A rest client how <a href="https://insomnia.rest">Insomnia</a> or <a href="https://www.postman.com">Postman</a>.
+
+an account on the <a href="https://cloudinary.com">cloudinary</a> platform
 
 <h3>Installing</h4>
 <h4>Cloning the Repository</h5>
@@ -68,7 +70,7 @@ With all dependencies installed and the environment properly configured, you can
   <li><a href="https://github.com/expressjs/multer">Multer</a> - Is a node.js middleware for handling multipart/form-data, which is primarily used for uploading files. It is written on top of busboy for maximum efficiency</li>
   <li><a href="https://socket.io/">SOCKET.IO</a> - Enables real-time, bidirectional and event-based communication.
 It works on every platform, browser or device, focusing equally on reliability and speed</li>
-  <li><a href="https://cloudinary.com"</a>Use Cloudinary to efficiently create, optimize, and deliver images, videos and other media across every device and channel.</li>
+  <li><a href="https://cloudinary.com">Cloudinary</a>Use Cloudinary to efficiently create, optimize, and deliver images, videos and other media across every device and channel.</li>
 </ul>
 
 <h2>License</h2>
