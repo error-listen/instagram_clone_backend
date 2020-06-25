@@ -30,12 +30,13 @@ const upload = multer({ storage })
 route.post('/sign_up', user_controller.sign_up)
 route.post('/sign_in', user_controller.sign_in)
 
+route.get('/verify/user', user_controller.verify_user)
+
 route.use(auth_middleware)
 
 route.get('/posts', post_controller.show_posts)
 route.get('/profile/:username', user_controller.show_profile)
 route.get('/user', user_controller.get_user)
-route.get('/verify/user', user_controller.verify_user)
 
 route.post('/post/create', upload.single('file'), post_controller.create_post)
 route.post('/post/like', post_controller.like_post)
