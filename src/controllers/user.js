@@ -43,6 +43,17 @@ module.exports = {
         }
     },
 
+    async verify_user(req, res){
+        const user = await user_model.findOne({username: req.body.username})
+
+        if(user){
+            res.json({ message: 'User already exists' })
+            return
+        }
+
+        res.json({message: 'User not exists'})
+    },
+
     async get_user(req, res) {
         const user = await user_model.findById(req.user_id)
 
