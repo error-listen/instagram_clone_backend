@@ -30,7 +30,7 @@ const upload = multer({ storage })
 route.post('/sign_up', user_controller.sign_up)
 route.post('/sign_in', user_controller.sign_in)
 
-route.get('/verify/user', user_controller.verify_user)
+route.post('/verify/user', user_controller.verify_user)
 
 route.use(auth_middleware)
 
