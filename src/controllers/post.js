@@ -1,8 +1,10 @@
 const cloudinary = require('cloudinary')
 const fs = require('fs')
+const hbjs = require('handbrake-js')
 
 const post_model = require('../models/post')
 const user_model = require('../models/user')
+const { on } = require('process')
 
 module.exports = {
 
@@ -20,34 +22,49 @@ module.exports = {
         const user = await user_model.findById(user_id)
 
         if (type === 'video') {
-            cloudinary.v2.uploader.upload(`uploads/${req.file.filename}`, {
-                resource_type: 'video',
-                public_id: `${req.file.filename}`,
-                folder: 'instagram_clone'
-            },
-                async function (error, result) {
+            hbjs.spawn({ input: `uploads/${req.file.filename}`, output: `converted_videos/${req.file.filename}`, quality: 30 })
+                .on('error', err => {
+                    console.log(err)
+                })
+                .on('progress', progress => {
+                    console.log(
+                        'Percent complete: %s, ETA: %s',
+                        progress.percentComplete,
+                        progress.eta
+                    )
+                })
+                .on('complete', () => {
+                    cloudinary.v2.uploader.upload(`converted_videos/${req.file.filename}`, {
+                        resource_type: 'video',
+                        public_id: `${req.file.filename}`,
+                        folder: 'instagram_clone'
+                    },
+                        async function (error, result) {
 
-                    if (error) {
-                        return
-                    }
+                            if (error) {
+                                return
+                            }
 
-                    const file_url = result.secure_url
+                            const file_url = result.secure_url
 
-                    const author = user.username
-                    const picture_url = user.picture_url
+                            const author = user.username
+                            const picture_url = user.picture_url
 
-                    await user.save()
+                            await user.save()
 
-                    const post = await post_model.create({
-                        author,
-                        description,
-                        picture_url,
-                        file_url,
-                        type
-                    })
+                            const post = await post_model.create({
+                                author,
+                                description,
+                                picture_url,
+                                file_url,
+                                type
+                            })
 
-                    fs.unlinkSync(`uploads/${req.file.filename}`)
-                    res.json({ message: 'Created post', post })
+                            res.send
+
+                            fs.unlinkSync(`uploads/${req.file.filename}`)
+                            fs.unlinkSync(`converted_videos/${req.file.filename}`)
+                        })
                 })
         } else if (type === 'image') {
             cloudinary.v2.uploader.upload(`uploads/${req.file.filename}`, { folder: 'instagram_clone' },
@@ -73,10 +90,10 @@ module.exports = {
                     })
 
                     fs.unlinkSync(`uploads/${req.file.filename}`)
-                    res.json({ message: 'Created post', post })
-
                 })
         }
+
+        res.json({ message: 'Created post' })
     },
 
     async like_post(req, res) {
