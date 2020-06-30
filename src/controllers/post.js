@@ -19,6 +19,11 @@ module.exports = {
 
         const user = await user_model.findById(user_id)
 
+        if (req.file.size > 20000000) {
+            res.json({ message: 'Maximum file size of 20MB' })
+            fs.unlinkSync(`uploads/${req.file.filename}`)
+        }
+
         if (type === 'video') {
             cloudinary.v2.uploader.upload(`uploads/${req.file.filename}`, {
                 resource_type: 'video',
