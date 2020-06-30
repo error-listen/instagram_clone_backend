@@ -22,6 +22,7 @@ module.exports = {
         if (req.file.size > 20000000) {
             res.json({ message: 'Maximum file size of 20MB' })
             fs.unlinkSync(`uploads/${req.file.filename}`)
+            return
         }
 
         if (type === 'video') {
